@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM arm32v7/php:7.3-fpm-alpine
 RUN apk add --no-cache \
     bzip2 \
     gd \

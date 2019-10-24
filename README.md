@@ -7,6 +7,7 @@ Includes the following additional PHP modules:
 - exif
 - gd
 - gettext
+- imagick
 - intl
 - mysqli
 - opcache
