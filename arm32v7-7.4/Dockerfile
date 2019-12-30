@@ -3,32 +3,32 @@ RUN apk add --no-cache \
     bzip2 \
     gd \
     gettext \
-    libxslt \
-    libzip \
-    libwebp \
-    libxpm \
     icu-libs \
     imagemagick \
+    libwebp \
+    libxpm \
+    libxslt \
+    libzip \
     && apk add --no-cache --virtual .build-dependencies \
     autoconf \
-    g++ \
-    libtool \
-    make \
-    pcre-dev \
-    imagemagick-dev \
+    bzip2-dev \
     freetype-dev \
-    libpng-dev \
-    libwebp-dev \
-    libxpm-dev \
+    g++ \
+    gettext-dev \
+    icu-dev \
+    imagemagick-dev \
     libgcrypt-dev \
     libgpg-error-dev \
-    libzip-dev \
-    icu-dev \
-    bzip2-dev \
-    gettext-dev \
-    libxml2-dev \
-    libxslt-dev \
     libjpeg-turbo-dev \
+    libpng-dev \
+    libtool \
+    libwebp-dev \
+    libxml2-dev \
+    libxpm-dev \
+    libxslt-dev \
+    libzip-dev \
+    make \
+    pcre-dev \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && docker-php-ext-configure gd \
@@ -54,25 +54,25 @@ RUN apk add --no-cache \
     sockets \
     xsl \
     && apk del --no-cache .build-dependencies \
-    freetype-dev \
-    libpng-dev \
-    libzip-dev \
-    icu-dev \
+    autoconf \
     bzip2-dev \
+    freetype-dev \
+    g++ \
     gettext-dev \
-    libxml2-dev \
-    libxslt-dev \
-    libjpeg-turbo-dev \
-    libwebp-dev \
-    libxpm-dev \
+    icu-dev \
+    imagemagick-dev \
     libgcrypt-dev \
     libgpg-error-dev \
-    autoconf \
-    g++ \
+    libjpeg-turbo-dev \
+    libpng-dev \
     libtool \
+    libwebp-dev \
+    libxml2-dev \
+    libxpm-dev \
+    libxslt-dev \
+    libzip-dev \
     make \
     pcre-dev \
-    imagemagick-dev \
     && docker-php-source delete \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/* /var/tmp/* \
