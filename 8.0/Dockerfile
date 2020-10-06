@@ -1,4 +1,4 @@
-FROM arm32v7/php:8.0.0beta4-fpm-alpine
+FROM php:8.0-rc-fpm-alpine
 RUN apk add --no-cache --virtual .build-dependencies \
     autoconf \
     bzip2-dev \

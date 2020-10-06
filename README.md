@@ -2,6 +2,11 @@
 ### Docker images for PHP based on the official images.
 This container follows the Wordpress recommendations for additional PHP modules, error reporting and Opcache configuration.
 
+[![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.4-fpm-alpine "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.3-fpm-alpine "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.4-fpm-alpine "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.3-fpm-alpine "Get your own version badge on microbadger.com")
+
+### Testing
+8.0-rc
+
 Includes the following additional PHP modules: 
 - bcmath
 - bz2
