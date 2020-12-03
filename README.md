@@ -3,15 +3,19 @@
 This container follows the Wordpress recommendations for additional PHP modules, error reporting and Opcache configuration.
 
 ### Latest
-(For now 7.4 is given the 'latest' tag. This is likely to change to 8.0 within the next release or so.)
 [![](https://images.microbadger.com/badges/version/rustic/php-fpm.svg)](https://microbadger.com/images/rustic/php-fpm "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.4-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.4-fpm-alpine "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/rustic/php-fpm:8.0-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:8.0-fpm-alpine "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.4-fpm-alpine "Get your own version badge on microbadger.com")
+
+### Latest ARM
+[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm64v8-8.0-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm64v8-8.0-fpm-alpine "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-8.0-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-8.0-fpm-alpine "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm64v8-7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm64v8-7.4-fpm-alpine "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.4-fpm-alpine "Get your own version badge on microbadger.com")
 
 ### Supported
 [![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.3-fpm-alpine "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm64v8-7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm64v8-7.3-fpm-alpine "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.3-fpm-alpine "Get your own version badge on microbadger.com")
 
 
