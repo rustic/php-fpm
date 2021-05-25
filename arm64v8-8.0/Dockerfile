@@ -40,8 +40,9 @@ RUN apk add --no-cache --virtual .build-dependencies \
     soap \
     sockets \
     xsl \
+    zip \
     && mkdir -p /usr/src/php/ext/imagick \
-    && curl -fsSL https://github.com/Imagick/imagick/archive/c5b8086b5d96c7030e6d4e6ea9a5ef49055d8273.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
+    && curl -fsSL https://github.com/Imagick/imagick/archive/209fe54148ed6068bc2d1e41a64fbd4bc95b4ae5.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
     && docker-php-ext-install imagick \
     && runDeps="$( \
         scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
