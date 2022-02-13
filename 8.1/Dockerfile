@@ -1,4 +1,4 @@
-FROM arm32v7/php:7.4-fpm-alpine
+FROM php:8.1-fpm-alpine
 RUN apk add --no-cache --virtual .build-dependencies \
     autoconf \
     bzip2-dev \
@@ -19,8 +19,6 @@ RUN apk add --no-cache --virtual .build-dependencies \
     libzip-dev \
     make \
     pcre-dev \
-    && pecl install imagick \
-    && docker-php-ext-enable imagick \
     && docker-php-ext-configure gd \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ \
@@ -40,9 +38,12 @@ RUN apk add --no-cache --virtual .build-dependencies \
     opcache \
     pdo_mysql \
     soap \
-    sockets \
     xsl \
     zip \
+    && CFLAGS="$CFLAGS -D_GNU_SOURCE" docker-php-ext-install -j$(nproc) sockets \
+    && mkdir -p /usr/src/php/ext/imagick \
+    && curl -fsSL https://github.com/Imagick/imagick/archive/52ec37ff633de0e5cca159a6437b8c340afe7831.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
+    && docker-php-ext-install imagick \
     && runDeps="$( \
         scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
             | tr ',' '\n' \
