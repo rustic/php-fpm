@@ -38,9 +38,9 @@ RUN apk add --no-cache --virtual .build-dependencies \
     opcache \
     pdo_mysql \
     soap \
+    sockets \
     xsl \
     zip \
-    && CFLAGS="$CFLAGS -D_GNU_SOURCE" docker-php-ext-install -j$(nproc) sockets \
     && mkdir -p /usr/src/php/ext/imagick \
     && curl -fsSL https://github.com/Imagick/imagick/archive/52ec37ff633de0e5cca159a6437b8c340afe7831.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
     && docker-php-ext-install imagick \
