@@ -2,21 +2,20 @@
 ### Docker images for PHP based on the official images.
 This container follows the Wordpress recommendations for additional PHP modules, error reporting and Opcache configuration.
 
-### Latest
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm.svg)](https://microbadger.com/images/rustic/php-fpm "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:8.0-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:8.0-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.4-fpm-alpine "Get your own version badge on microbadger.com")
+### License and Architechture
+![GitHub](https://img.shields.io/github/license/rustic/php-fpm?style=for-the-badge) \
+![Arch](https://img.shields.io/badge/Arch-linux%2Famd64-green?style=for-the-badge)
+![Arch](https://img.shields.io/badge/Arch-linux%2Farm%2fv7-green?style=for-the-badge)
+![Arch](https://img.shields.io/badge/Arch-linux%2Farm64-green?style=for-the-badge)
 
-### Latest ARM
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm64v8-8.0-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm64v8-8.0-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-8.0-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-8.0-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm64v8-7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm64v8-7.4-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.4-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.4-fpm-alpine "Get your own version badge on microbadger.com")
+### Latest Release
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/rustic/php-fpm?sort=semver&style=for-the-badge)
 
-### Supported
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:7.3-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm64v8-7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm64v8-7.3-fpm-alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/rustic/php-fpm:arm32v7-7.3-fpm-alpine.svg)](https://microbadger.com/images/rustic/php-fpm:arm32v7-7.3-fpm-alpine "Get your own version badge on microbadger.com")
+### Current Releases
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/8.1-fpm-alpine?style=for-the-badge)
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/8.0-fpm-alpine?style=for-the-badge)
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/7.4-fpm-alpine?style=for-the-badge)
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/7.3-fpm-alpine?style=for-the-badge)
 
 
 Includes the following additional PHP modules: 
