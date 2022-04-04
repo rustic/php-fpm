@@ -2,7 +2,7 @@
 ### Docker images for PHP based on the official images.
 This container follows the Wordpress recommendations for additional PHP modules, error reporting and Opcache configuration.
 
-### License and Architechture
+### License and Architecture
 ![GitHub](https://img.shields.io/github/license/rustic/php-fpm?style=for-the-badge) \
 ![Arch](https://img.shields.io/badge/Arch-linux%2Famd64-green?style=for-the-badge)
 ![Arch](https://img.shields.io/badge/Arch-linux%2Farm%2fv7-green?style=for-the-badge)
