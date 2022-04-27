@@ -1,0 +1,60 @@
+version: 2.1
+
+workflows:
+  build-deploy:
+    jobs:
+      - build:
+          context: environment
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - setup_remote_docker:
+          version: 20.10.11
+      - checkout
+      - run: 
+            name: "Setup custom environment variables"
+            command: |
+                      echo "export VERSION81=$(curl -s https://release-monitoring.org/api/v2/projects/\\?name\\=php | jq '.items[].versions' | cut -d '\"' -f 2 | grep -E \"8.1.?[0-9]+$\" | head -1)" >> $BASH_ENV
+                      echo "export VERSION80=$(curl -s https://release-monitoring.org/api/v2/projects/\\?name\\=php | jq '.items[].versions' | cut -d '\"' -f 2 | grep -E \"8.0.?[0-9]+$\" | head -1)" >> $BASH_ENV
+                      echo "export VERSION74=$(curl -s https://release-monitoring.org/api/v2/projects/\\?name\\=php | jq '.items[].versions' | cut -d '\"' -f 2 | grep -E \"7.4.?[0-9]+$\" | head -1)" >> $BASH_ENV
+                      echo "export MY_HASH=$(git --no-pager log --pretty=format:\"%h\" -1)" >> $BASH_ENV
+                      echo 'export DOCKER_USERNAME=${DOCKER_USERNAME}' >> $BASH_ENV
+                      echo 'export DOCKER_PASSWD=${DOCKER_PASSWD}' >> $BASH_ENV
+                      echo 'export CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME}' >> $BASH_ENV
+                      echo 'export CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME}' >> $BASH_ENV
+      - run: 
+            name: "Setup Buildx Environment"
+            command: |
+                      docker context create builder
+                      docker buildx create builder --use
+      - run: 
+            name: "Logging in to DockerHub" 
+            command: echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
+      - run: 
+            name: "Building Container 8.1"
+            command: |
+                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:latest \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:8.1 \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION81} \
+                      --build-arg VCS_REF=${MY_HASH} \
+                      --build-arg VERSION=${VERSION81} 8.1/.
+      - run: 
+            name: "Building Container 8.0"
+            command: |
+                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:8.0 \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION80} \
+                      --build-arg VCS_REF=${MY_HASH} \
+                      --build-arg VERSION=${VERSION80} 8.0/.
+      - run: 
+            name: "Building Container 7.4"
+            command: |
+                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:7.4 \
+                      --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION74} \
+                      --build-arg VCS_REF=${MY_HASH} \
+                      --build-arg VERSION=${VERSION74} 7.4/.
