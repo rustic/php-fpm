@@ -36,7 +36,7 @@ jobs:
       - run: 
             name: "Building Container 8.1"
             command: |
-                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 \
+                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:latest \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:8.1 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION81} \
@@ -45,7 +45,7 @@ jobs:
       - run: 
             name: "Building Container 8.0"
             command: |
-                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 \
+                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:8.0 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION80} \
                       --build-arg VCS_REF=${MY_HASH} \
@@ -53,7 +53,7 @@ jobs:
       - run: 
             name: "Building Container 7.4"
             command: |
-                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 \
+                      docker buildx build --push --platform linux/arm64,linux/amd64,linux/arm/v7 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:7.4 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION74} \
                       --build-arg VCS_REF=${MY_HASH} \
