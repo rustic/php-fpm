@@ -17,9 +17,9 @@ jobs:
       - run: 
             name: "Setup custom environment variables"
             command: |
-                      echo "export VERSION81=$(curl -s https://release-monitoring.org/api/v2/projects/\?name\=php | jq '.items[].versions' | cut -d '"' -f 2 | grep -E \"8.1.?[0-9]+$\" | head -1)" >> $BASH_ENV
-                      echo "export VERSION80=$(curl -s https://release-monitoring.org/api/v2/projects/\?name\=php | jq '.items[].versions' | cut -d '"' -f 2 | grep -E \"8.0.?[0-9]+$\" | head -1)" >> $BASH_ENV
-                      echo "export VERSION74=$(curl -s https://release-monitoring.org/api/v2/projects/\?name\=php | jq '.items[].versions' | cut -d '"' -f 2 | grep -E \"7.4.?[0-9]+$\" | head -1)" >> $BASH_ENV
+                      echo "export VERSION81=$(curl -s https://release-monitoring.org/api/v2/projects/\?name\=php | jq -r '.items[].versions' | grep -E \"8.1.?[0-9]+$\" | head -1)" >> $BASH_ENV
+                      echo "export VERSION80=$(curl -s https://release-monitoring.org/api/v2/projects/\?name\=php | jq -r '.items[].versions' | grep -E \"8.0.?[0-9]+$\" | head -1)" >> $BASH_ENV
+                      echo "export VERSION74=$(curl -s https://release-monitoring.org/api/v2/projects/\?name\=php | jq -r '.items[].versions' | grep -E \"7.4.?[0-9]+$\" | head -1)" >> $BASH_ENV
                       echo "export MY_HASH=$(git --no-pager log --pretty=format:\"%h\" -1)" >> $BASH_ENV
                       echo 'export DOCKER_USERNAME=${DOCKER_USERNAME}' >> $BASH_ENV
                       echo 'export DOCKER_PASSWD=${DOCKER_PASSWD}' >> $BASH_ENV
