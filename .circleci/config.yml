@@ -41,7 +41,7 @@ jobs:
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:8.1 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION81} \
                       --build-arg VCS_REF=${MY_HASH} \
-                      --build-arg VERSION=${VERSION81} 8.1/.
+                      --build-arg VERSION=${VERSION81} --file 8.1/Dockerfile 8.1/.
       - run: 
             name: "Building Container 8.0"
             command: |
@@ -49,7 +49,7 @@ jobs:
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:8.0 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION80} \
                       --build-arg VCS_REF=${MY_HASH} \
-                      --build-arg VERSION=${VERSION80} 8.0/.
+                      --build-arg VERSION=${VERSION80} --file 8.0/Dockerfile 8.0/.
       - run: 
             name: "Building Container 7.4"
             command: |
@@ -57,4 +57,4 @@ jobs:
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:7.4 \
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION74} \
                       --build-arg VCS_REF=${MY_HASH} \
-                      --build-arg VERSION=${VERSION74} 7.4/.
+                      --build-arg VERSION=${VERSION74} --file 7.4/Dockerfile 7.4/.
