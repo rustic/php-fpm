@@ -30,6 +30,7 @@ jobs:
             command: |
                       docker context create buildx-build
                       docker buildx create --use buildx-build
+                      docker run --privileged --rm tonistiigi/binfmt --install all
       - run: 
             name: "Logging in to DockerHub" 
             command: echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
