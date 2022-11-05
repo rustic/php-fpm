@@ -28,8 +28,8 @@ jobs:
       - run: 
             name: "Setup Buildx Environment"
             command: |
-                      docker context create builder
-                      docker buildx create builder --use
+                      docker context create buildx-build
+                      docker buildx create --use buildx-build
       - run: 
             name: "Logging in to DockerHub" 
             command: echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
