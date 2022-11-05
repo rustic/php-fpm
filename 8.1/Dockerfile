@@ -19,13 +19,13 @@ RUN apk add --no-cache --virtual .build-dependencies \
     libzip-dev \
     make \
     pcre-dev 
+    RUN docker-php-ext-configure zip 
+    RUN docker-php-ext-configure intl 
     RUN docker-php-ext-configure gd \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ \
     --with-webp=/usr/include/ \
     --with-xpm=/usr/include/ 
-    RUN docker-php-ext-configure zip 
-    RUN docker-php-ext-configure intl 
     RUN docker-php-ext-install -j$(nproc) \
     bcmath \
     bz2 \
