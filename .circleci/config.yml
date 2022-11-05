@@ -9,10 +9,10 @@ workflows:
 jobs:
   build:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/php:stable
     steps:
       - setup_remote_docker:
-          version: 20.10.11
+          version: 20.10.18
       - checkout
       - run: 
             name: "Setup custom environment variables"
