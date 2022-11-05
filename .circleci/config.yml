@@ -9,7 +9,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: cimg/php:stable
+      - image: cimg/base:current
     steps:
       - setup_remote_docker:
           version: 20.10.18
