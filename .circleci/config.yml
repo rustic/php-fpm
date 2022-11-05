@@ -3,11 +3,15 @@ version: 2.1
 workflows:
   build-deploy:
     jobs:
-      - build:
+      - build-81:
           context: environment
+      - build-80:
+          context: environment
+      - build-74:
+          context: environment                
 
 jobs:
-  build:
+  build-81:
     docker:
       - image: cimg/base:current
     resource_class: large
@@ -19,8 +23,6 @@ jobs:
             name: "Setup custom environment variables"
             command: |
                       echo "export VERSION81=$(curl -s https://release-monitoring.org/api/v2/projects/?name=php | jq -r '.items[].stable_versions[]' | grep 8.1. | head -1)" >> $BASH_ENV
-                      echo "export VERSION80=$(curl -s https://release-monitoring.org/api/v2/projects/?name=php | jq -r '.items[].stable_versions[]' | grep 8.0. | head -1)" >> $BASH_ENV
-                      echo "export VERSION74=$(curl -s https://release-monitoring.org/api/v2/projects/?name=php | jq -r '.items[].stable_versions[]' | grep 7.4. | head -1)" >> $BASH_ENV
                       echo "export MY_HASH=$(git --no-pager log --pretty=format:\"%h\" -1)" >> $BASH_ENV
                       echo 'export DOCKER_USERNAME=${DOCKER_USERNAME}' >> $BASH_ENV
                       echo 'export DOCKER_PASSWD=${DOCKER_PASSWD}' >> $BASH_ENV
@@ -44,6 +46,32 @@ jobs:
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION81} \
                       --build-arg VCS_REF=${MY_HASH} \
                       --build-arg VERSION=${VERSION81} --file 8.1/Dockerfile 8.1/.
+  build-80:
+    docker:
+      - image: cimg/base:current
+    resource_class: large
+    steps:
+      - setup_remote_docker:
+          version: 20.10.18
+      - checkout
+      - run: 
+            name: "Setup custom environment variables"
+            command: |
+                      echo "export VERSION80=$(curl -s https://release-monitoring.org/api/v2/projects/?name=php | jq -r '.items[].stable_versions[]' | grep 8.0. | head -1)" >> $BASH_ENV
+                      echo "export MY_HASH=$(git --no-pager log --pretty=format:\"%h\" -1)" >> $BASH_ENV
+                      echo 'export DOCKER_USERNAME=${DOCKER_USERNAME}' >> $BASH_ENV
+                      echo 'export DOCKER_PASSWD=${DOCKER_PASSWD}' >> $BASH_ENV
+                      echo 'export CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME}' >> $BASH_ENV
+                      echo 'export CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME}' >> $BASH_ENV
+      - run: 
+            name: "Setup Buildx Environment"
+            command: |
+                      docker context create buildx-build
+                      docker buildx create --use buildx-build
+                      docker run --privileged --rm tonistiigi/binfmt --install all
+      - run: 
+            name: "Logging in to DockerHub" 
+            command: echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
       - run: 
             name: "Building Container 8.0"
             command: |
@@ -52,6 +80,32 @@ jobs:
                       --tag ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${VERSION80} \
                       --build-arg VCS_REF=${MY_HASH} \
                       --build-arg VERSION=${VERSION80} --file 8.0/Dockerfile 8.0/.
+  build-74:
+    docker:
+      - image: cimg/base:current
+    resource_class: large
+    steps:
+      - setup_remote_docker:
+          version: 20.10.18
+      - checkout
+      - run: 
+            name: "Setup custom environment variables"
+            command: |
+                      echo "export VERSION74=$(curl -s https://release-monitoring.org/api/v2/projects/?name=php | jq -r '.items[].stable_versions[]' | grep 7.4. | head -1)" >> $BASH_ENV
+                      echo "export MY_HASH=$(git --no-pager log --pretty=format:\"%h\" -1)" >> $BASH_ENV
+                      echo 'export DOCKER_USERNAME=${DOCKER_USERNAME}' >> $BASH_ENV
+                      echo 'export DOCKER_PASSWD=${DOCKER_PASSWD}' >> $BASH_ENV
+                      echo 'export CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME}' >> $BASH_ENV
+                      echo 'export CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME}' >> $BASH_ENV
+      - run: 
+            name: "Setup Buildx Environment"
+            command: |
+                      docker context create buildx-build
+                      docker buildx create --use buildx-build
+                      docker run --privileged --rm tonistiigi/binfmt --install all
+      - run: 
+            name: "Logging in to DockerHub" 
+            command: echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
       - run: 
             name: "Building Container 7.4"
             command: |
