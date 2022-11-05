@@ -18,15 +18,15 @@ RUN apk add --no-cache --virtual .build-dependencies \
     libxslt-dev \
     libzip-dev \
     make \
-    pcre-dev \
-    && docker-php-ext-configure gd \
+    pcre-dev 
+    RUN docker-php-ext-configure gd \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ \
     --with-webp=/usr/include/ \
-    --with-xpm=/usr/include/ \
-    && docker-php-ext-configure zip \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install -j$(nproc) \
+    --with-xpm=/usr/include/ 
+    RUN docker-php-ext-configure zip 
+    RUN docker-php-ext-configure intl 
+    RUN docker-php-ext-install -j$(nproc) \
     bcmath \
     bz2 \
     calendar \
@@ -40,17 +40,17 @@ RUN apk add --no-cache --virtual .build-dependencies \
     soap \
     sockets \
     xsl \
-    zip \
-    && mkdir -p /usr/src/php/ext/imagick \
-    && curl -fsSL https://github.com/Imagick/imagick/archive/52ec37ff633de0e5cca159a6437b8c340afe7831.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
-    && docker-php-ext-install imagick \
-    && runDeps="$( \
+    zip 
+    RUN mkdir -p /usr/src/php/ext/imagick 
+    RUN curl -fsSL https://github.com/Imagick/imagick/archive/52ec37ff633de0e5cca159a6437b8c340afe7831.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 
+    RUN docker-php-ext-install imagick 
+    RUN runDeps="$( \
         scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
             | tr ',' '\n' \
             | sort -u \
             | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-	)" \
-    && apk add --virtual .wordpress-phpexts-rundeps $runDeps \
+	)" 
+    RUN apk add --virtual .wordpress-phpexts-rundeps $runDeps \
     && echo 'opcache.memory_consumption=128' > /usr/local/etc/php/conf.d/opcache-recommended.ini \
     && echo 'opcache.interned_strings_buffer=8' >> /usr/local/etc/php/conf.d/opcache-recommended.ini \
     && echo 'opcache.max_accelerated_files=4000' >> /usr/local/etc/php/conf.d/opcache-recommended.ini \
@@ -64,9 +64,9 @@ RUN apk add --no-cache --virtual .build-dependencies \
     && echo 'log_errors_max_len = 1024' >> /usr/local/etc/php/conf.d/error-logging.ini \
     && echo 'ignore_repeated_errors = On' >> /usr/local/etc/php/conf.d/error-logging.ini \
     && echo 'ignore_repeated_source = Off' >> /usr/local/etc/php/conf.d/error-logging.ini \
-    && echo 'html_errors = Off' >> /usr/local/etc/php/conf.d/error-logging.ini \
-    && apk del .build-dependencies \
-    && docker-php-source delete \
-    && rm -rf /var/cache/apk/* \
-    && rm -rf /tmp/* /var/tmp/* \
+    && echo 'html_errors = Off' >> /usr/local/etc/php/conf.d/error-logging.ini 
+    RUN apk del .build-dependencies 
+    RUN docker-php-source delete 
+    RUN rm -rf /var/cache/apk/* 
+    RUN rm -rf /tmp/* /var/tmp/* \
     && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" 
