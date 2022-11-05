@@ -2,6 +2,9 @@
 ### Docker images for PHP based on the official images.
 This container follows the Wordpress recommendations for additional PHP modules, error reporting and Opcache configuration.
 
+### Build Status
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/rustic/php-fpm/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/rustic/php-fpm/tree/master)
+
 ### License and Architecture
 ![GitHub](https://img.shields.io/github/license/rustic/php-fpm?style=for-the-badge) \
 ![Arch](https://img.shields.io/badge/Arch-linux%2Famd64-green?style=for-the-badge)
