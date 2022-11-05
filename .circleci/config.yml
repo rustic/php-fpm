@@ -5,10 +5,10 @@ workflows:
     jobs:
       - build-81:
           context: environment
-      - build-80:
-          context: environment
-      - build-74:
-          context: environment                
+      # - build-80:
+      #     context: environment
+      # - build-74:
+      #     context: environment                
 
 jobs:
   build-81:
