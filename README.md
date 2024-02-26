@@ -12,6 +12,7 @@ This container follows the Wordpress recommendations for additional PHP modules,
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/rustic/php-fpm?sort=semver&style=for-the-badge)
 
 ### Current Releases
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/8.2-fpm-alpine?style=for-the-badge)
 ![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/8.1-fpm-alpine?style=for-the-badge)
 ![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/8.0-fpm-alpine?style=for-the-badge)
 ![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/rustic/php-fpm/7.4-fpm-alpine?style=for-the-badge)
@@ -51,5 +52,4 @@ services:
     user: "101:101"
     volumes:
       - ./html:/var/www/html
-      - ./phpextras.ini:/usr/local/etc/php/conf.d/phpextras.ini
 ```

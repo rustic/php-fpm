@@ -1,4 +1,5 @@
-FROM php:8.0-fpm-alpine
+ARG VERSION
+FROM php:$VERSION-fpm-alpine
 RUN apk add --no-cache --virtual .build-dependencies \
     autoconf \
     bzip2-dev \
@@ -17,6 +18,7 @@ RUN apk add --no-cache --virtual .build-dependencies \
     libxpm-dev \
     libxslt-dev \
     libzip-dev \
+    linux-headers \
     make \
     pcre-dev \
     && docker-php-ext-configure gd \
