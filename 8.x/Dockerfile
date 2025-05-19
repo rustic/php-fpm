@@ -20,8 +20,9 @@ RUN apk add --no-cache --virtual .build-dependencies \
     libzip-dev \
     linux-headers \
     make \
-    pcre-dev \
-    && docker-php-ext-configure gd \
+    pcre-dev
+
+RUN docker-php-ext-configure gd \
     --with-freetype=/usr/include/ \
     --with-jpeg=/usr/include/ \
     --with-webp=/usr/include/ \
@@ -42,9 +43,10 @@ RUN apk add --no-cache --virtual .build-dependencies \
     soap \
     sockets \
     xsl \
-    zip \
-    && mkdir -p /usr/src/php/ext/imagick \
-    && curl -fsSL https://github.com/Imagick/imagick/archive/52ec37ff633de0e5cca159a6437b8c340afe7831.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
+    zip
+
+RUN mkdir -p /usr/src/php/ext/imagick \
+    && curl -fsSL https://github.com/Imagick/imagick/archive/555bf68b592a8d9d0a0a2f37d1256a8b6cf2d39e.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
     && docker-php-ext-install imagick \
     && runDeps="$( \
         scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
